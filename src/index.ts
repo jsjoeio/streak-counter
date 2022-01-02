@@ -9,14 +9,18 @@ interface Streak {
 // Used when storing in localStorage
 const KEY = "streak";
 
+function assertStreakExists(
+  streakInLocalStorage: string | null
+): streakInLocalStorage is string {
+  return streakInLocalStorage !== null && streakInLocalStorage !== "";
+}
+
 export function streakCounter(_localStorage: Storage, date: Date): Streak {
   const streakInLocalStorage = _localStorage.getItem(KEY);
-  const doesStreakExist =
-    streakInLocalStorage !== null && streakInLocalStorage !== "";
 
-  if (doesStreakExist) {
+  if (assertStreakExists(streakInLocalStorage)) {
     try {
-      const streak = JSON.parse(streakInLocalStorage || "");
+      const streak = JSON.parse(streakInLocalStorage);
       return streak;
     } catch (error) {
       console.error("Failed to parse streak from localStorage");
