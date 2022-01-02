@@ -34,4 +34,12 @@ describe("streakCounter", () => {
     expect(streak.currentCount).toBe(1);
     expect(streak.lastLoginDate).toBe(dateFormatted);
   });
+  it("should store the streak in localStorage", () => {
+    const date = new Date();
+    const key = "streak";
+    streakCounter(mockLocalStorage, date);
+
+    const streakAsString = mockLocalStorage.getItem(key);
+    expect(streakAsString).not.toBeNull();
+  });
 });
