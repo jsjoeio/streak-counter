@@ -21,6 +21,19 @@ export function streakCounter(_localStorage: Storage, date: Date): Streak {
   if (assertStreakExists(streakInLocalStorage)) {
     try {
       const streak = JSON.parse(streakInLocalStorage);
+
+      const shouldIncrement = true;
+
+      if (shouldIncrement) {
+        const updatedStreak: Streak = {
+          ...streak,
+          currentCount: streak.currentCount + 1,
+          lastLoginDate: formattedDate(date),
+        };
+
+        return updatedStreak;
+      }
+
       return streak;
     } catch (error) {
       console.error("Failed to parse streak from localStorage");
