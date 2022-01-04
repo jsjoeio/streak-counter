@@ -15,6 +15,29 @@ function assertStreakExists(
   return streakInLocalStorage !== null && streakInLocalStorage !== "";
 }
 
+function shouldIncrementOrResetStreakCount(
+  currentDate: string,
+  lastLoginDate: string
+) {
+  // We get 11/5/2021
+  // so to get 5, we split on / and get the second item
+  const difference =
+    parseInt(currentDate.split("/")[1]) - parseInt(lastLoginDate.split("/")[1]);
+
+  // This means they logged in the day after the currentDate
+  if (difference === 1) {
+    return {
+      shouldIncrement: true,
+    };
+  }
+
+  // Otherwise they logged in after a day, which would
+  // break the streak
+  return {
+    shouldIncrement: false,
+  };
+}
+
 export function streakCounter(_localStorage: Storage, date: Date): Streak {
   const streakInLocalStorage = _localStorage.getItem(KEY);
 
@@ -22,7 +45,10 @@ export function streakCounter(_localStorage: Storage, date: Date): Streak {
     try {
       const streak = JSON.parse(streakInLocalStorage);
 
-      const shouldIncrement = true;
+      const { shouldIncrement } = shouldIncrementOrResetStreakCount(
+        formattedDate(date),
+        streak.lastLoginDate
+      );
 
       if (shouldIncrement) {
         const updatedStreak: Streak = {
