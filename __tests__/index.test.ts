@@ -75,5 +75,13 @@ describe("streakCounter", () => {
       // Should match the dates used to set up the tests
       expect(streak.startDate).toBe("12/12/2021");
     });
+    it("should increment the streak", () => {
+      // It should increment because this is the day after
+      // the streak started and a streak is days in a row.
+      const date = new Date("2021-12-13");
+      const streak = streakCounter(mockLocalStorage, date);
+
+      expect(streak.currentCount).toBe(2);
+    });
   });
 });
