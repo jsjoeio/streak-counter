@@ -69,7 +69,7 @@ describe("streakCounter", () => {
       mockLocalStorage.clear();
     });
     it("should return the streak from localStorage", () => {
-      const date = new Date();
+      const date = new Date("2021-12-12");
       const streak = streakCounter(mockLocalStorage, date);
 
       // Should match the dates used to set up the tests
@@ -115,6 +115,23 @@ describe("streakCounter", () => {
       const _streak = streakCounter(mockLocalStorage, _date);
 
       expect(_streak.currentCount).toBe(1);
+    });
+    it("should save the reset streak to localStorage", () => {
+      const key = "streak";
+      const date = new Date("2021-12-13");
+      // Call it once so it updates the streak
+      streakCounter(mockLocalStorage, date);
+
+      // Skip a day and break the streak
+      const _date = new Date("2021-12-15");
+      const _streak = streakCounter(mockLocalStorage, _date);
+
+      const streakAsString = mockLocalStorage.getItem(key);
+      // Normally you should wrap in try/catch in case the JSON is bad
+      // but since we authored it, we can skip here
+      const streak = JSON.parse(streakAsString || "");
+
+      expect(streak.currentCount).toBe(1);
     });
   });
 });

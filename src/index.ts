@@ -28,6 +28,7 @@ function shouldIncrementOrResetStreakCount(
   if (difference === 1) {
     return {
       shouldIncrement: true,
+      shouldReset: false,
     };
   }
 
@@ -35,6 +36,7 @@ function shouldIncrementOrResetStreakCount(
   // break the streak
   return {
     shouldIncrement: false,
+    shouldReset: true,
   };
 }
 
@@ -45,10 +47,11 @@ export function streakCounter(_localStorage: Storage, date: Date): Streak {
     try {
       const streak = JSON.parse(streakInLocalStorage);
 
-      const { shouldIncrement } = shouldIncrementOrResetStreakCount(
-        formattedDate(date),
-        streak.lastLoginDate
-      );
+      const { shouldIncrement, shouldReset } =
+        shouldIncrementOrResetStreakCount(
+          formattedDate(date),
+          streak.lastLoginDate
+        );
 
       if (shouldIncrement) {
         const updatedStreak: Streak = {
@@ -58,6 +61,16 @@ export function streakCounter(_localStorage: Storage, date: Date): Streak {
         };
         // store in localStorage
         _localStorage.setItem(KEY, JSON.stringify(updatedStreak));
+
+        return updatedStreak;
+      }
+
+      if (shouldReset) {
+        const updatedStreak: Streak = {
+          currentCount: 1,
+          startDate: formattedDate(date),
+          lastLoginDate: formattedDate(date),
+        };
 
         return updatedStreak;
       }
