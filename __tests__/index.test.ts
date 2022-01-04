@@ -91,5 +91,18 @@ describe("streakCounter", () => {
 
       expect(streak.currentCount).toBe(1);
     });
+    it("should save the incremented streak to localStorage", () => {
+      const key = "streak";
+      const date = new Date("2021-12-13");
+      // Call it once so it updates the streak
+      streakCounter(mockLocalStorage, date);
+
+      const streakAsString = mockLocalStorage.getItem(key);
+      // Normally you should wrap in try/catch in case the JSON is bad
+      // but since we authored it, we can skip here
+      const streak = JSON.parse(streakAsString || "");
+
+      expect(streak.currentCount).toBe(2);
+    });
   });
 });
