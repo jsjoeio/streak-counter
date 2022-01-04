@@ -23,6 +23,13 @@ function shouldIncrementOrResetStreakCount(
   // so to get 5, we split on / and get the second item
   const difference =
     parseInt(currentDate.split("/")[1]) - parseInt(lastLoginDate.split("/")[1]);
+  // Same-day login, do nothing
+  if (difference === 0) {
+    return {
+      shouldIncrement: false,
+      shouldReset: false,
+    };
+  }
 
   // This means they logged in the day after the currentDate
   if (difference === 1) {
