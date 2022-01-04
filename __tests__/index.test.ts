@@ -104,5 +104,17 @@ describe("streakCounter", () => {
 
       expect(streak.currentCount).toBe(2);
     });
+    it("should reset if not consecutive", () => {
+      const date = new Date("2021-12-13");
+      const streak = streakCounter(mockLocalStorage, date);
+
+      expect(streak.currentCount).toBe(2);
+
+      // Skip a day and break the streak
+      const _date = new Date("2021-12-15");
+      const _streak = streakCounter(mockLocalStorage, _date);
+
+      expect(_streak.currentCount).toBe(1);
+    });
   });
 });
