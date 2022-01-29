@@ -4,6 +4,9 @@ export interface Streak {
   lastLoginDate: string;
 }
 
+// Used when storing in localStorage
+export const KEY = "streak";
+
 export function formattedDate(date: Date): string {
   // NOTE@jsjoeio
   // sometimes this returns 11/11/2021
@@ -26,4 +29,8 @@ export function buildStreak(
     ...defaultStreak,
     ...overrideDefaults,
   };
+}
+
+export function updateStreak(_localStorage: Storage, streak: Streak): void {
+  _localStorage.setItem(KEY, JSON.stringify(streak));
 }
