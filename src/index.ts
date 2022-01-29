@@ -1,4 +1,4 @@
-import { buildStreak, formattedDate, Streak } from "./lib";
+import { buildStreak, formattedDate, Streak, updateStreak } from "./lib";
 
 // Used when storing in localStorage
 const KEY = "streak";
@@ -60,8 +60,8 @@ export function streakCounter(_localStorage: Storage, date: Date): Streak {
           currentCount: streak.currentCount + 1,
           lastLoginDate: formattedDate(date),
         });
-        // store in localStorage
-        _localStorage.setItem(KEY, JSON.stringify(updatedStreak));
+
+        updateStreak(_localStorage, updatedStreak);
 
         return updatedStreak;
       }
