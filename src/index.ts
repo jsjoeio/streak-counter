@@ -1,7 +1,4 @@
-import { buildStreak, formattedDate, Streak, updateStreak } from "./lib";
-
-// Used when storing in localStorage
-const KEY = "streak";
+import { buildStreak, formattedDate, Streak, updateStreak, KEY } from "./lib";
 
 function assertStreakExists(
   streakInLocalStorage: string | null
@@ -68,8 +65,7 @@ export function streakCounter(_localStorage: Storage, date: Date): Streak {
 
       if (shouldReset) {
         const updatedStreak = buildStreak(date);
-        // store in localStorage
-        _localStorage.setItem(KEY, JSON.stringify(updatedStreak));
+        updateStreak(_localStorage, updatedStreak);
 
         return updatedStreak;
       }
@@ -82,8 +78,7 @@ export function streakCounter(_localStorage: Storage, date: Date): Streak {
 
   const streak = buildStreak(date);
 
-  // store in localStorage
-  _localStorage.setItem(KEY, JSON.stringify(streak));
+  updateStreak(_localStorage, streak);
 
   return streak;
 }
