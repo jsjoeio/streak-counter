@@ -1,21 +1,33 @@
 {
   "name": "@jsjoeio/streak-counter",
   "version": "0.0.1",
-  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/jsjoeio/streak-counter"
   },
   "author": "Joe Previte <jjprevite@gmail.com>",
   "license": "MIT",
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "source": "src/index.ts",
+  "exports": {
+    "require": "./dist/index.cjs",
+    "default": "./dist/index.modern.js"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.module.js",
+  "unpkg": "./dist/index.umd.js",
   "scripts": {
-    "test": "jest"
+    "build": "microbundle",
+    "dev": "microbundle watch",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest"
   },
   "devDependencies": {
     "@types/jest": "^27.0.3",
     "@types/jsdom": "^16.2.14",
     "jest": "^27.4.5",
     "jsdom": "^19.0.0",
+    "microbundle": "^0.14.2",
     "ts-jest": "^27.1.2",
     "typescript": "^4.5.0-beta"
   }
