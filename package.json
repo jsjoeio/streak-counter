@@ -1,9 +1,12 @@
 {
-  "name": "streak-counter",
-  "version": "1.0.0",
+  "name": "@jsjoeio/streak-counter",
+  "version": "0.0.1",
   "main": "index.js",
-  "repository": "git@github.com:jsjoeio/streak-counter.git",
-  "author": "Joe <joe@coder.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jsjoeio/streak-counter"
+  },
+  "author": "Joe Previte <jjprevite@gmail.com>",
   "license": "MIT",
   "scripts": {
     "test": "jest"
