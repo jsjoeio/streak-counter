@@ -14,6 +14,8 @@ npm install @jsjoeio/streak-counter
 
 ### Usage
 
+[![Edit streak-counter (egghead)](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/streak-counter-egghead-twsw1?fontsize=14&hidenavigation=1&theme=dark)
+
 ```typescript
 import { streakCounter } from "@jsjoeio/streak-counter";
 
