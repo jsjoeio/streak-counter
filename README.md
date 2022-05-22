@@ -2,7 +2,7 @@
 
 This is a basic streak counter - inspired by Duolingo - written in TypeScript and meant for the browser (uses `localStorage`).
 
-![gif of streak counter](https://github.com/jsjoeio/use-streak/raw/main/streak-demo.png)
+<img src="https://github.com/jsjoeio/use-streak/raw/main/streak-demo.png" alt="screenshot of streak demo" width="200" />
 
 ## Install
 
