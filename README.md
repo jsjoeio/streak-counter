@@ -2,7 +2,7 @@
 
 This is a basic streak counter - inspired by Duolingo - written in TypeScript and meant for the browser (uses `localStorage`).
 
-![gif of streak counter](https://media.giphy.com/media/3oeSADtWioTfaSzRok/giphy.gif)
+![gif of streak counter](https://i.giphy.com/media/3oeSADtWioTfaSzRok/giphy.webp)
 
 ## Install
 
